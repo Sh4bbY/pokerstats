@@ -16,7 +16,6 @@ class Ranking
 
     function calculateRanking()
     {
-
         $ranking = [];
         foreach ($this->tournaments as $tournament) {
             $participants = $tournament->getParticipants();
@@ -87,7 +86,7 @@ class Ranking
                 <th>Name</th>
                 <th>TotalWins</th>
                 <th>TotalSecond</th>
-                <th>TotalSecond</th>
+                <th>TotalThird</th>
                 <th>Teilnahmen</th>
                 <th>Preisgeld</th>
                 <th>Profit</th>
@@ -127,6 +126,17 @@ class Ranking
             default:
                 return 'rest';
         }
+    }
+
+    function getRankingData()
+    {
+        $ranking = $this->calculateRanking();
+        return json_encode($ranking);
+    }
+
+    function getTournamentData()
+    {
+        return file_get_contents('./tournaments.json');
     }
 
     function printTournaments()
