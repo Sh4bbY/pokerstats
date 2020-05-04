@@ -155,7 +155,7 @@ class Ranking
 
         foreach ($this->tournaments as $tournament) {
             $rows[] = "<tr>
-                <td>" . date('h:i d.m.y', $tournament->date) . "</td>
+                <td>" . date('H:i d.m.y', $tournament->date) . "</td>
                 <td>" . $tournament->winner . "</td>
                 <td>" . $tournament->second . "</td>
                 <td>" . $tournament->third . "</td>

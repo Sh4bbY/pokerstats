@@ -3,9 +3,11 @@
 //Turnier Klasse erstellen
 require "./turnier.php";
 require "./ranking.php";
+require "./Importer.php";
+
 
 $ranking = new Ranking();
-$ranking->loadTournaments();
+//$ranking->loadTournaments();
 
 ?>
 
@@ -15,9 +17,9 @@ $ranking->loadTournaments();
   <link rel="stylesheet" type="text/css" href="./styles.css">
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script><?php
-    echo "var rankingData = " . $ranking->getRankingData() . ";";
-    echo "var tournamentData = " . $ranking->getTournamentData() . ";";
-    ?>
+      echo "var rankingData = " . $ranking->getRankingData() . ";";
+      echo "var tournamentData = " . $ranking->getTournamentData() . ";";
+      ?>
   </script>
   <script src="./chart.js"></script>
 </head>
@@ -26,6 +28,10 @@ $ranking->loadTournaments();
 
 <?php
 
+$importer = new Importer();
+$importer->import('./turniere.csv');
+
+$ranking->tournaments = $importer->getTournaments();
 $ranking->printTournaments();
 $ranking->printRankingProfit();
 
